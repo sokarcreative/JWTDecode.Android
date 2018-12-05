@@ -3,6 +3,8 @@ package com.auth0.android.jwt;
 
 import android.support.annotation.Nullable;
 
+import org.json.JSONObject;
+
 import java.lang.reflect.Array;
 import java.util.Collections;
 import java.util.Date;
@@ -52,5 +54,11 @@ class BaseClaim implements Claim {
     @Override
     public <T> List<T> asList(Class<T> tClazz) throws DecodeException {
         return Collections.emptyList();
+    }
+
+    @Nullable
+    @Override
+    public JSONObject asJSONObject() {
+        return null;
     }
 }
