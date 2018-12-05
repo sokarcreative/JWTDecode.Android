@@ -8,6 +8,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
@@ -105,6 +108,18 @@ class ClaimImpl extends BaseClaim {
             return list;
         } catch (JsonSyntaxException e) {
             throw new DecodeException("Failed to decode claim as list", e);
+        }
+    }
+
+    @Nullable
+    @Override
+    public JSONObject asJSONObject() throws DecodeException {
+        try {
+            return new JSONObject(value.getAsJsonObject().toString());
+        } catch (JsonSyntaxException e) {
+            throw new DecodeException("Failed to decode claim as JSONObject", e);
+        } catch (JSONException e) {
+            throw new DecodeException("Failed to decode claim as JSONObject", e);
         }
     }
 }

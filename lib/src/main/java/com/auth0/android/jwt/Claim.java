@@ -2,6 +2,8 @@ package com.auth0.android.jwt;
 
 import android.support.annotation.Nullable;
 
+import org.json.JSONObject;
+
 import java.util.Date;
 import java.util.List;
 
@@ -73,4 +75,13 @@ public interface Claim {
      * @throws DecodeException if the values inside the List can't be converted to a class T.
      */
     <T> List<T> asList(Class<T> tClazz) throws DecodeException;
+
+    /**
+     * Get this Claim as a JSONObject.
+     * If the value can't be converted to a JSONObject, null will be returned.
+     *
+     * @return the value as a JSONObject or null.
+     */
+    @Nullable
+    JSONObject asJSONObject();
 }
